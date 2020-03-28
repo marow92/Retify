@@ -9,8 +9,6 @@ Retify is a Vue.js based SPA application which empowers you to use favourite Spo
   <img align="center" src="https://images.opencollective.com/vuejs/25a8146/logo/256.png">
  </p>
 
-# retify
-
 ## Project setup
 
 ```
