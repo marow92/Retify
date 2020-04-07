@@ -55,3 +55,4 @@
     </v-card>
   </v-container>
 </template>
+<script src="./DashboardScript.js" />
