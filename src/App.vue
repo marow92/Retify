@@ -3,6 +3,10 @@
     <v-navigation-drawer
       app
       permanent
+      width="200"
+      hide-overlay
+      persistent
+      clipped
       :color="color"
       :expand-on-hover="expandOnHover"
       :mini-variant="Variantmini"
