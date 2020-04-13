@@ -1,50 +1,40 @@
-import store from "../store";
-
+// import store from "../store";
+import axios from "axios";
 const serverUrl = "http://localhost:8000";
 
 export async function register(user) {
-    fetch(`${serverUrl}/register`, {
+    axios(`${serverUrl}/register`, {
         method: "POST",
-        body: { user },
-    })
-        .then((response) => {
-            console.log(response);
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data);
-        });
+        data: { user },
+        withCredentials: true
+    }).then(response => {
+        console.log(response.data);
+    });
 }
 
 export async function login(username, password) {
-    fetch(`${serverUrl}/login`, {
+    axios(`${serverUrl}/login`, {
         method: "POST",
-        body: { username, password },
-    })
-        .then((response) => {
-            console.log(response);
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data);
-        });
+        data: { username, password },
+        withCredentials: true
+    }).then(response => {
+        console.log(response.data);
+    });
 }
-
-export async function loginWithSpotify() {
-    fetch(`${serverUrl}/login-with-spotify`, {
-        method: "POST",
-        redirect: "follow",
-    })
-        .then((response) => {
-            console.log(response);
-            return response.json();
-        })
-        .then((data) => {
-            window.location.href = data.url;
-            console.log(data);
-        });
+export async function test() {
+    axios(`${serverUrl}/authrequired`, {
+        method: "GET",
+        withCredentials: true
+    }).then(response => {
+        console.log(response.data);
+    });
 }
 
 export async function logout() {
-    store.dispatch("logout");
+    axios(`${serverUrl}/logout`, {
+        method: "GET",
+        withCredentials: true
+    }).then(response => {
+        console.log(response.data);
+    });
 }
