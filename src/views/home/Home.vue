@@ -1,11 +1,14 @@
 <template>
     <div class="home">
-        <button @click="onLoginWithSpotifyButtonClick">
-            Login with Spotify
-        </button>
+        <a href="http://localhost:8000/login-with-spotify"
+            ><button @click="onLoginWithSpotifyButtonClick">
+                Login with Spotify
+            </button></a
+        >
         <button @click="onRegisterButtonClick">Register]</button>
         <button @click="onLoginButtonClick">Login</button>
         <button @click="onLogoutButtonClick">Logout</button>
+        <button @click="onTestButtonClick">Test</button>
         <h1>This is an home page</h1>
     </div>
 </template>
@@ -19,7 +22,7 @@ export default {
     components: {},
     methods: {
         onLoginWithSpotifyButtonClick() {
-            loginService.loginWithSpotify();
+            // loginService.loginWithSpotify();
             // fetch("http://localhost:8888/login-with-spotify", {
             //     method: "POST",
             //     redirect: "follow",
@@ -37,11 +40,14 @@ export default {
             loginService.register("user", "password");
         },
         onLoginButtonClick() {
-            loginService.login("user", "password");
+            loginService.login("test@test.com", "password");
         },
         onLogoutButtonClick() {
             loginService.logout();
         },
-    },
+        onTestButtonClick() {
+            loginService.test();
+        }
+    }
 };
 </script>
