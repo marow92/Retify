@@ -1,6 +1,6 @@
 <template>
   <v-app
-  style="background-color: #58ACE5;">
+  style="background-color: #e8f1f7;">
     <v-navigation-drawer
       app
       permanent
@@ -70,7 +70,7 @@ export default {
       colors: ["primary", "blue", "success", "red", "teal"],
       right: false,
       miniVariant: true,
-      expandOnHover: true,
+      expandOnHover: false,
       background: true
     };
   },
