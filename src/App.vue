@@ -80,7 +80,7 @@ export default {
         ? "https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
         : undefined;
     }
-  }
+  },
 };
 </script>
 
