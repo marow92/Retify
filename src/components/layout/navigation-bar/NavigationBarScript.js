@@ -39,7 +39,7 @@ export default {
             colors: ["primary", "blue", "success", "red", "teal"],
             right: false,
             miniVariant: true,
-            expandOnHover: true,
+            expandOnHover: false,
             background: true,
         };
     },

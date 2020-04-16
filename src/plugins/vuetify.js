@@ -14,7 +14,8 @@ export default new Vuetify({
       music: 'mdi-music',
       play: 'mdi-play',
       prefs: 'mdi-settings',
-      logout: 'mdi-location-exit'
+      logout: 'mdi-location-exit',
+      more: 'mdi-more'
     },
   },
 });
