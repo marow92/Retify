@@ -1,9 +1,10 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import userStore from "./userStore";
+import notificationStore from "./notificationStore";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    modules: { userStore },
+    modules: { userStore, notificationStore },
 });
