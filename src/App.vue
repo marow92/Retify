@@ -1,5 +1,5 @@
 <template>
-    <v-app style="background-color: #58ACE5;">
+    <v-app style="background-color: #e8f1f7;">
         <notification-component />
         <navigation-bar />
 
@@ -13,3 +13,4 @@
         </v-content>
     </v-app>
 </template>
+<script src="./AppScript.js">
