@@ -2,6 +2,7 @@
 var express = require("express");
 var router = express.Router();
 var passport = require("passport");
+const client = require("../config/mongoClient").client;
 
 router.post("/register", function(req, res) {
     const isSuccess = true;
@@ -60,5 +61,7 @@ router.get("/authrequired", (req, res) => {
         res.send("FAILED!");
     }
 });
+
+router.get("/db", client.getAll);
 
 module.exports = router;
