@@ -1,78 +1,60 @@
 .dash {
-    display: 'flex';
-    flex: 1;
-    background-color: #e8f1f7;
+  display: 'flex';
+  flex: 1;
+  background-color: #e8f1f7;
 }
 
 .card {
-    border-radius: 5px;
-    background-color: #209eef;
-    margin-right: 16px;
-    max-height: 310px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-height: 310px;
+  margin-right: 16px;
+  border-radius: 5px;
 }
 
 .friendsCard {
-    border-radius: 5px;
-    background-color: #209eef;
-    margin-right: 16px;
-    height: 310px;
-    display: flex;
-    flex-direction: column;
-    flex: 0.75;
+  display: flex;
+  flex-direction: column;
+  flex: 0.75;
+  background-color: #209eef;
+  height: 310px;
+  margin-right: 16px;
+  border-radius: 5px;
 }
 
 .friend {
-    display: flex;
-    flex: 1;
-    background-color: #c0e1f7;
-    height: 50px;
-    width: 250px;
-    margin: 5px;
-    padding: 7px;
-    border-radius: 25px;
-    justify-content: center;
-    box-shadow: -1px 2px 4px -2px rgba(0, 0, 0, 0.81);
-}
-
-.more {
-    display: flex;
-    height: 50px;
-    flex: 1;
-    margin: 5px;
-    padding: 10px;
-    align-items: center;
-    justify-content: center;
-    border-style: solid;
-    border-radius: 25px;
-    border-width: 2px;
-    border-color: #6fc2fa;
-}
-
-.button-title {
-    color: #6fc2fa;
-    display: flex;
-    font-weight: bold;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  background-color: #c0e1f7;
+  cursor: pointer;
+  height: 50px;
+  width: 250px;
+  margin: 5px;
+  padding: 7px;
+  border-radius: 25px;
+  box-shadow: -1px 2px 4px -2px rgba(0, 0, 0, 0.81);
 }
 
 .rateSongItem {
-    display: flex;
-    flex: 1;
-    background-color: #c0e1f7;
-    max-height: 40px;
-    max-width: 360px;
-    padding: 5px;
-    border-radius: 25px;
-    justify-content: center;
-    align-items: center;
-    box-shadow: -1px 2px 4px -2px rgba(0, 0, 0, 0.81);
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #c0e1f7;
+  margin: 5px;
+  padding: 5px;
+  max-height: 40px;
+  max-width: 360px;
+  border-radius: 25px;
+  box-shadow: -1px 2px 4px -2px rgba(0, 0, 0, 0.81);
 }
 
 .cardContent {
-    display: flex;
-    flex: 1;
-    max-height: 240px;
-    overflow-y: scroll;
+  display: flex;
+  flex: 1;
+  max-height: 240px;
+  overflow-y: scroll;
 }
