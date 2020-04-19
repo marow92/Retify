@@ -13,6 +13,15 @@
         absolute
         dark
     >
+        <button @click="loginWithSpotify">
+            LOGIN WITH SPOTIFY
+        </button>
+        <button @click="getMyRecentlyPlayedTracks">
+            getMyRecentlyPlayedTracks
+        </button>
+        <button @click="getMyData">
+            getMyData
+        </button>
         <v-list dense nav class="py-0">
             <v-list-item two-line :class="miniVariant && 'px-0'">
                 <v-list-item-avatar>
