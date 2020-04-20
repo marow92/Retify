@@ -62,6 +62,12 @@ router.get("/authrequired", (req, res) => {
     }
 });
 
+router.get("/user-valid", client.userExists);
+
 router.get("/db", client.getAll);
+
+router.post("/create-entry", client.createEntryInCollection);
+
+router.post("/create-entries", client.createEntriesInCollection);
 
 module.exports = router;
