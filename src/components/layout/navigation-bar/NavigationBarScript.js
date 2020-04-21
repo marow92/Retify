@@ -1,3 +1,5 @@
+import { loginWithSpotify } from "../../../api/loginService";
+import { getMyRecentlyPlayedTracks, getMyData } from "../../../api/userService";
 export default {
     data() {
         return {
@@ -48,6 +50,17 @@ export default {
             return this.background
                 ? "https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
                 : undefined;
+        },
+    },
+    methods: {
+        loginWithSpotify() {
+            loginWithSpotify();
+        },
+        getMyRecentlyPlayedTracks() {
+            getMyRecentlyPlayedTracks("5U4W9E5WsYb2jUQWePT8Xm");
+        },
+        getMyData() {
+            getMyData();
         },
     },
 };

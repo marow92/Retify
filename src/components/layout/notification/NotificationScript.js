@@ -12,7 +12,7 @@ export default {
                     message: "READ MESSAGE",
                     type: "success",
                 }),
-            2000
+            0
         );
     },
     methods: {

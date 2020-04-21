@@ -3,29 +3,22 @@ var express = require("express");
 var router = express.Router();
 var passport = require("passport");
 const client = require("../config/mongoClient").client;
+// TODO: all routes to index, only index imported to main app
+// import retifyApi from "./retifyApi"
+// import spotifyApi from "./spotifyApi"
 
-router.post("/register", function(req, res) {
-    const isSuccess = true;
-    res.send({ isSuccess });
-});
+// var express = require("express");
+// var router = express.Router();
+// var passport = require("passport");
 
-router.post("/login", function(req, res, next) {
-    console.log(req.sessionID);
-    passport.authenticate("local", (err, user, info) => {
-        if (info) {
-            return res.send(info.message);
-        }
-        if (err) {
-            return next(err);
-        }
-        req.login(user, err => {
-            if (err) {
-                return next(err);
-            }
-            return res.send("LOGGED IN - sessionId is saved within cookie");
-        });
-    })(req, res, next);
-});
+// router.get("/authrequired", (req, res) => {
+//     console.log(req.sessionID);
+//     if (req.isAuthenticated()) {
+//         res.send("you hit the authentication endpoint\n");
+//     } else {
+//         res.send("FAILED!");
+//     }
+// });
 
 router.get("/logout", function(req, res) {
     req.logout();
