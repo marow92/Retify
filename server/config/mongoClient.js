@@ -40,11 +40,11 @@ const client = {
       }));
   },
 
-  userExists: async function (req, res) {
+  userExists: async function (username, password) {
     const collection = await client.getCollection("UserCredentials");
-    console.log(req.query)
+    console.log(`searching data for username: ${username} and password: ${password}`)
 
-    collection.find(req.query)
+    collection.find(username,password)
       .toArray((function (err, records){
         if (err) {
           return res.status(500).send("Error getting user");

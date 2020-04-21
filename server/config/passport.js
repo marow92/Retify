@@ -1,6 +1,7 @@
 const passport = require("passport");
 const SpotifyStrategy = require("passport-spotify").Strategy;
 const LocalStrategy = require("passport-local").Strategy;
+const mongo = require("../config/mongoClient").client;
 
 const cliendId = "01577be964124996a91fb11fd24b7c56";
 const clientSecret = "8600089034414dbf9a292821c461f9e9";
@@ -50,6 +51,7 @@ passport.use(
 
 passport.use(
     new LocalStrategy((username, password, done) => {
+        const doesUserExist = mongo.userExists(username, passport)
         const user = users.find(obj => obj.username === username);
         if (!user) {
             return done(null, false, {
