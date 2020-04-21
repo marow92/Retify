@@ -40,51 +40,33 @@ const client = {
       }));
   },
 
-  userExists: async function (username, password) {
+  checkCredentialsCorrectness: async function (username, password, callback) {
     const collection = await client.getCollection("UserCredentials");
     console.log(`searching data for username: ${username} and password: ${password}`)
 
-    collection.find(username,password)
-      .toArray((function (err, records){
-        if (err) {
-          return res.status(500).send("Error getting user");
-        } else {
-          console.log(records);
-          if(records.length != 0){
-            return res.status(200).send(true);
-          }else{
-            return res.status(200).send(false);
-          }
-        }
-      }))
+    collection.findOne({
+      username: username,
+      password: password
+    }, callback);
   },
 
-  createEntryInCollection: async function(req, res) {
-    const collection = await client.getCollection("testowa");
+  findUserByUserName: async function (username, callback) {
+    const collection = await client.getCollection("UserCredentials");
+    console.log(`checking does user exist: ${username}`)
 
-    console.log(req.body)
-    collection.insertOne(req.body, function(err, db){
-      if(err){
-        return res.status(500).send("Error inserting data");
-      }else{
-        console.log("1 document inserted into ");
-        return res.status(200).send("")
-      }
-    })
+    collection.findOne({
+      username: username
+    }, callback);
   },
 
-  createEntriesInCollection: async function(req, res) {
-    const collection = await client.getCollection("testowa");
+  registerUser: async function (username, password, callback) {
+    const collection = await client.getCollection("UserCredentials");
+    console.log(`searching data for username: ${username} and password: ${password}`)
 
-    console.log(req.body)
-    collection.insertMany(req.body, function(err, db){
-      if(err){
-        return res.status(500).send("Error inserting data");
-      }else{
-        console.log("1 document inserted into ");
-        return res.status(200).send("")
-      }
-    })
+    collection.insertOne({
+      username: username,
+      password: password
+    }, callback)
   },
 }
 

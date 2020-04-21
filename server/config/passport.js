@@ -12,11 +12,11 @@ const users = [
     { id: 1, username: "test2@test.com", password: "password2" },
 ];
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
     done(null, user);
 });
 
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser(function (user, done) {
     // const user = users.find((obj) => obj.id === id);
     // done(null, user ? user : false);
     done(null, user);
@@ -29,9 +29,9 @@ passport.use(
             clientSecret: clientSecret,
             callbackURL: "http://localhost:8000/api/spotify/callback",
         },
-        function(accessToken, refreshToken, expires_in, profile, done) {
+        function (accessToken, refreshToken, expires_in, profile, done) {
             // asynchronous verification, for effect...
-            process.nextTick(function() {
+            process.nextTick(function () {
                 const email = profile.emails[0].value;
                 const user = users.find((obj) => obj.username === email);
                 if (!user) {
@@ -54,17 +54,13 @@ passport.use(
 
 passport.use(
     new LocalStrategy((username, password, done) => {
-        const doesUserExist = mongo.userExists(username, passport)
-        console.log("user exists: " + doesUserExist)
-        const user = users.find(obj => obj.username === username);
-        if (!user) {
-            return done(null, false, {
-                message: `Account with username "${username}" doesn't exist`,
-            });
-        }
-        if (user.password !== password) {
-            return done(null, false, { message: "Wrong password" });
-        }
-        return done(null, user);
+        mongo.checkCredentialsCorrectness(username, password, function (err, user) {
+            if (!user) {
+                return done(null, false, {
+                    message: `Wrong username or password`,
+                });
+            }
+            return done(null, user);
+        });
     })
 );
