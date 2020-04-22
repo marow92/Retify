@@ -4,6 +4,7 @@ const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 const bodyParser = require("body-parser");
 const passport = require("passport");
+const mongoClient = require("./config/mongoClient").default
 const cors = require("cors");
 // const bcrypt = require('bcrypt-nodejs');
 require("./config/passport");
@@ -11,7 +12,6 @@ const retifyRouter = require("./routes/retifyApi");
 const spotifyRouter = require("./routes/spotifyApi");
 
 const app = express();
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors({ credentials: true, origin: "http://localhost:8080" }));

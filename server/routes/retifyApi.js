@@ -1,13 +1,27 @@
 var express = require("express");
 var router = express.Router();
 var passport = require("passport");
+const mongo = require("../config/mongoClient").client;
 
 router.post("/register", function(req, res) {
-    const isSuccess = true;
-    res.send({ isSuccess });
+    console.log("inside register")
+    mongo.findUserByUserName(req.body['username'], function (err, user) {
+        if (user) {
+            res.status(409).send("User with given username already exists");
+        }else{
+             mongo.registerUser(req.body['username'], req.body['password'], function (err, inserted){
+                if(!err){
+                    res.status(201).send(true);
+                }else{
+                    res.status(500).send(false);
+                }
+            })
+        }
+    });
 });
 
 router.post("/login", function(req, res, next) {
+    console.log("inside login")
     passport.authenticate("local", (err, user, info) => {
         if (info) {
             return res.send(info.message);
