@@ -32,6 +32,10 @@ const routes = [
             next();
         },
     },
+    {
+        path: "/",
+        redirect: "/login",
+    },
 ];
 
 function isAuthenticated(to, from, next) {

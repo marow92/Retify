@@ -3,42 +3,72 @@ import router from "../router";
 import axios from "axios";
 const serverUrl = "http://localhost:8000";
 import { NotificationType } from "../enums/NotificationTypeEnum";
-import { showNotification } from "../common/utils/utils";
+import {
+    showNotification,
+    showLoadingOverlay,
+    hideLoadingOverlay,
+} from "../common/utils/utils";
 
+//TODO: create API class
 export async function register(username, password) {
+    showLoadingOverlay();
     axios(`${serverUrl}/api/retify/register`, {
         method: "POST",
         data: { username, password },
         withCredentials: true,
-    }).then((response) => {
-        if (response.status !== 200) {
-            showNotification(response.data, NotificationType.ERROR);
+    })
+        .then((response) => {
+            if (response.status !== 201) {
+                console.log(response.data);
+                showNotification(response.data, NotificationType.ERROR);
+                return;
+            }
+            store.dispatch("authenticationStore/login");
+            router.push("dashboard").catch((err) => {
+                console.log(err);
+            });
+            showNotification(
+                "You succesfully signed up",
+                NotificationType.SUCCESS
+            );
+        })
+        .catch((err) => {
+            showNotification(err.response.data, NotificationType.ERROR);
             return;
-        }
-        store.dispatch("authenticationStore/login");
-        router.push("dashboard").catch((err) => {
-            console.log(err);
+        })
+        .finally(() => {
+            hideLoadingOverlay();
         });
-        showNotification("You succesfully signed up", NotificationType.SUCCESS);
-    });
 }
 
 export async function login(username, password) {
+    showLoadingOverlay();
     axios(`${serverUrl}/api/retify/login`, {
         method: "POST",
         data: { username, password },
         withCredentials: true,
-    }).then((response) => {
-        if (response.status !== 200) {
-            showNotification(response.data, NotificationType.ERROR);
+    })
+        .then((response) => {
+            if (response.status !== 200) {
+                showNotification(response.data, NotificationType.ERROR);
+                return;
+            }
+            store.dispatch("authenticationStore/login", username);
+            router.push("dashboard").catch((err) => {
+                console.log(err);
+            });
+            showNotification(
+                "You succesfully logged in",
+                NotificationType.SUCCESS
+            );
+        })
+        .catch((err) => {
+            showNotification(err.response.data, NotificationType.ERROR);
             return;
-        }
-        store.dispatch("authenticationStore/login", username);
-        router.push("dashboard").catch((err) => {
-            console.log(err);
+        })
+        .finally(() => {
+            hideLoadingOverlay();
         });
-        showNotification("You succesfully logged in", NotificationType.SUCCESS);
-    });
 }
 
 export async function loginWithSpotify() {

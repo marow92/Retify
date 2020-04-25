@@ -1,5 +1,6 @@
 <template>
     <v-app style="background-color: #e8f1f7;">
+        <loading-overlay />
         <notification-component />
         <navigation-bar v-if="isLogged"/>
 

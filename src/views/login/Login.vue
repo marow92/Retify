@@ -21,12 +21,14 @@
                                 <v-card-text>
                                     <v-form>
                                         <v-text-field
+                                            @keydown.enter.native="onLogin"
                                             v-model="form.username"
                                             label="Login"
                                             name="login"
                                             type="text"
                                         ></v-text-field>
                                         <v-text-field
+                                            @keydown.enter.native="onLogin"
                                             v-model="form.password"
                                             id="password"
                                             label="Password"
