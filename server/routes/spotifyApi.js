@@ -15,19 +15,20 @@ router.get(
             "user-read-recently-played",
             "playlist-read-private",
         ],
-        failureRedirect: "http://localhost:8080/login",
+        failureRedirect: "http://localhost:8080/#/login",
     })
 );
 
 router.get(
     "/callback",
     passport.authenticate("spotify", {
-        failureRedirect: "http://localhost:8080/login",
+        failureRedirect: "http://localhost:8080/#/login",
     }),
     (req, res) => {
+        // req.login();
         // console.log(res.req.user);
         // console.log(res.req.user.emails[0].value);
-        res.redirect("http://localhost:8080/home");
+        res.redirect("http://localhost:8080/#/dashboard");
     }
 );
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 var express = require("express");
 var router = express.Router();
 var passport = require("passport");
@@ -51,9 +52,9 @@ router.get("/logout", function(req, res) {
     res.send("LOGGED OUT - sessionId is no longer valid");
 });
 
-router.put("/rate/song", function(req, res){
+router.put("/rate/song", function(req, res) {
     console.log("inside rate song function");
-    console.log(req.body)
+    console.log(req.body);
 
     mongo.rateSong(
         req.body["songId"],
@@ -66,12 +67,12 @@ router.put("/rate/song", function(req, res){
                 res.status(500).send();
             }
         }
-    )
+    );
 });
 
-router.put("/rate/artist", function(req, res){
+router.put("/rate/artist", function(req, res) {
     console.log("inside rate song function");
-    console.log(req.body)
+    console.log(req.body);
 
     mongo.rateArtist(
         req.body["artistId"],
@@ -84,37 +85,31 @@ router.put("/rate/artist", function(req, res){
                 res.status(500).send();
             }
         }
-    )
+    );
 });
 
-router.get("/rate/song", function(req, res){
+router.get("/rate/song", function(req, res) {
     console.log("inside get song rate function");
 
-    mongo.getAverageSongRate(
-        req.query.songId,
-        function(err, extracted) {
-            if (!err) {
-                res.status(200).send(extracted);
-            } else {
-                res.status(500).send();
-            }
+    mongo.getAverageSongRate(req.query.songId, function(err, extracted) {
+        if (!err) {
+            res.status(200).send(extracted);
+        } else {
+            res.status(500).send();
         }
-    )
+    });
 });
 
-router.get("/rate/artist", function(req, res){
+router.get("/rate/artist", function(req, res) {
     console.log("inside get artist rate function");
 
-    mongo.getAverageArtistRate(
-        req.query.artistId,
-        function(err, extracted) {
-            if (!err) {
-                res.status(200).send(extracted);
-            } else {
-                res.status(500).send();
-            }
+    mongo.getAverageArtistRate(req.query.artistId, function(err, extracted) {
+        if (!err) {
+            res.status(200).send(extracted);
+        } else {
+            res.status(500).send();
         }
-    )
+    });
 });
 
 module.exports = router;

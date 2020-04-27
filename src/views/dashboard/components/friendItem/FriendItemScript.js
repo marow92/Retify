@@ -7,9 +7,4 @@ export default {
             musicNote: "♫ ",
         };
     },
-    computed: {
-        last3Friends: function() {
-            return this.friendsList.slice(0, 3);
-        },
-    },
 };

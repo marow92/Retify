@@ -81,7 +81,10 @@
                                     >
                                 </v-col>
                                 <v-col md="4" align-self="end">
-                                    <v-btn depressed color="primary"
+                                    <v-btn
+                                        @click="onLoginWithSpotify"
+                                        depressed
+                                        color="primary"
                                         >Sign in with spotify</v-btn
                                     >
                                 </v-col>

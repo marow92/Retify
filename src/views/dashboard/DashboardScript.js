@@ -1,40 +1,48 @@
-import FriendsList from './components/friendsList/FriendsList.vue';
-import RateSongsList from './components/rateSongsList/RateSongsList.vue';
-import { Card, MoreButton } from '../../components';
-import friends, { songs } from './mockData';
+import FriendList from "./components/friendList/FriendList.vue";
+import RateSongList from "./components/rateSongList/RateSongList.vue";
+import { Card, MoreButton } from "../../components";
+import friends, { songs } from "./mockData";
+import { getSongsToRate } from "./DashboardController";
 export default {
-  data: function() {
-    return {
-      titles: {
-        friends: 'Przyjaciele',
-        rateSongs: 'Oceń piosenki',
-        more: 'Zobacz więcej',
-      },
-      friends,
-      songs,
-      avatar: true,
-      flat: true,
-      twoLine: true,
-      musicNote: '♫ ',
-      moreTitle: 'Zobacz więcej',
-      moreIcon: '$vuetify.icons.more',
-    };
-  },
-  computed: {
-    last3Friends: function() {
-      return this.friendsList.slice(0, 3);
+    components: {
+        FriendList,
+        RateSongList,
+        Card,
+        MoreButton,
     },
-  },
-  methods: {
-    onMoreFiends: () => {},
-    onMoreSongs: () => {},
-    onSongRated: () => {},
-    onFriend: () => {},
-  },
-  components: {
-    FriendsList,
-    RateSongsList,
-    Card,
-    MoreButton,
-  },
+    data: function() {
+        return {
+            titles: {
+                friends: "Przyjaciele",
+                rateSongs: "Oceń piosenki",
+                more: "Zobacz więcej",
+            },
+            friends,
+            songs: songs,
+            avatar: true,
+            flat: true,
+            twoLine: true,
+            musicNote: "♫ ",
+            moreTitle: "Zobacz więcej",
+            moreIcon: "$vuetify.icons.more",
+        };
+    },
+    computed: {
+        last3Friends: function() {
+            return this.friends.slice(0, 3);
+        },
+    },
+    async created() {
+        const songs = await getSongsToRate();
+        console.log(songs);
+    },
+    mounted() {
+        console.log("mounted");
+    },
+    methods: {
+        onMoreFriends: () => {},
+        onMoreSongs: () => {},
+        onSongRated: () => {},
+        onFriend: () => {},
+    },
 };

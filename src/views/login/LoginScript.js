@@ -1,4 +1,4 @@
-import { register, login } from "../../api/loginService";
+import { register, login, loginWithSpotify } from "../../api/loginService";
 
 export default {
     data() {
@@ -14,6 +14,9 @@ export default {
     methods: {
         onLogin() {
             login(this.form.username, this.form.password);
+        },
+        onLoginWithSpotify() {
+            loginWithSpotify();
         },
         onRegister() {
             register(this.form.username, this.form.password);
