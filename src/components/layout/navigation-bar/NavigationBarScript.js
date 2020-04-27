@@ -10,7 +10,11 @@ export default {
                     icon: "$vuetify.icons.dash",
                     to: "/dashboard",
                 },
-                { title: "Najlepsze", icon: "$vuetify.icons.star", to: "/top" },
+                {
+                    title: "Najlepsze",
+                    icon: "$vuetify.icons.star",
+                    to: "/top-rated",
+                },
                 {
                     title: "Artyści",
                     icon: "$vuetify.icons.artist",
