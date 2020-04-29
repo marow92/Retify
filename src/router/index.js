@@ -15,9 +15,6 @@ const routes = [
         name: "Dashboard",
         component: Dashboard,
         beforeEnter: isAuthenticated,
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
     },
     {
         path: "/top-rated",
@@ -36,6 +33,12 @@ const routes = [
         beforeEnter: (to, from, next) => {
             logout("authentication/logout");
             next();
+        },
+    },
+    {
+        path: "/play",
+        beforeEnter: () => {
+            window.location.href = "https://open.spotify.com/";
         },
     },
     {
