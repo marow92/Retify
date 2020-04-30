@@ -91,25 +91,49 @@ router.put("/rate/artist", function(req, res) {
 router.get("/rate/song", function(req, res) {
     console.log("inside get song rate function");
 
-    mongo.getAverageSongRate(req.query.songId, function(err, extracted) {
-        if (!err) {
-            res.status(200).send(extracted);
-        } else {
-            res.status(500).send();
-        }
-    });
+    if (req.query.userId == undefined) {
+        mongo.getAverageSongRate(req.query.songId, function(err, extracted) {
+            if (!err) {
+                res.status(200).send(extracted);
+            } else {
+                res.status(500).send();
+            }
+        });
+    } else {
+        mongo.getSongRateForSpecificUser(
+            req.query.songId,
+            req.query.userId,
+            function(err, extracted) {
+                if (!err) {
+                    res.status(200).send(extracted);
+                } else {
+                    res.status(500).send(err);
+                }
+            }
+        );
+    }
 });
 
 router.get("/rate/artist", function(req, res) {
     console.log("inside get artist rate function");
 
-    mongo.getAverageArtistRate(req.query.artistId, function(err, extracted) {
-        if (!err) {
-            res.status(200).send(extracted);
-        } else {
-            res.status(500).send();
-        }
-    });
+    if (req.query.userId == undefined) {
+        mongo.getAverageArtistRate(req.query.artistId, function(
+            err,
+            extracted
+        ) {
+            if (!err) {
+                res.status(200).send(extracted);
+            } else {
+                res.status(500).send();
+            }
+        });
+    } else {
+        mongo.getArtistRateForSpecificUser(
+            req.query.artistId,
+            req.query.userId
+        );
+    }
 });
 
 module.exports = router;

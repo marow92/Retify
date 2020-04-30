@@ -36,6 +36,14 @@ const routes = [
         },
     },
     {
+        path: "/callback",
+        beforeEnter: () => {
+            store.dispatch("authenticationStore/login");
+            router.push("dashboard").catch((err) => {
+                console.log(err);
+            });
+    },
+    {
         path: "/play",
         beforeEnter: () => {
             window.location.href = "https://open.spotify.com/";

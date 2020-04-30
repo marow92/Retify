@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 var express = require("express");
 var router = express.Router();
 const SpotifyWebApi = require("spotify-web-api-node");
@@ -25,10 +26,7 @@ router.get(
         failureRedirect: "http://localhost:8080/#/login",
     }),
     (req, res) => {
-        // req.login();
-        // console.log(res.req.user);
-        // console.log(res.req.user.emails[0].value);
-        res.redirect("http://localhost:8080/#/dashboard");
+        res.redirect("http://localhost:8080/#/callback");
     }
 );
 
