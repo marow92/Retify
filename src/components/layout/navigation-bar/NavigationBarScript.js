@@ -15,15 +15,15 @@ export default {
                     icon: "$vuetify.icons.star",
                     to: "/top-rated",
                 },
-                {
-                    title: "Artyści",
-                    icon: "$vuetify.icons.artist",
-                    to: "/artists",
-                },
+                // {
+                //     title: "Artyści",
+                //     icon: "$vuetify.icons.artist",
+                //     to: "/artists",
+                // },
                 {
                     title: "Piosenki",
                     icon: "$vuetify.icons.music",
-                    to: "/browseSongs",
+                    to: "/browse-songs",
                 },
                 {
                     title: "Słuchaj",

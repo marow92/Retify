@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 const serverUrl = "http://localhost:8000";
 
@@ -6,7 +7,7 @@ export async function getAlbumSongs(id) {
         method: "GET",
         withCredentials: true,
     }).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
     });
 }
 
@@ -15,7 +16,7 @@ export async function getArtistData(id) {
         method: "GET",
         withCredentials: true,
     }).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
     });
 }
 
@@ -24,7 +25,7 @@ export async function getSongData(id) {
         method: "GET",
         withCredentials: true,
     }).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
     });
 }
 
@@ -34,16 +35,19 @@ export async function rateSong(songId, rate) {
         data: { songId, rate },
         withCredentials: true,
     }).then((response) => {
-        console.log(response);
+        // console.log(response);
     });
 }
 
-export async function getSongRate(songId) {
-    return axios(`${serverUrl}/api/retify/rate/song/${songId}`, {
-        method: "GET",
-        withCredentials: true,
-    }).then((response) => {
-        return console.log(response);
+export async function getSongRate(username, songId) {
+    return axios(
+        `${serverUrl}/api/retify/rate/song?songId=${songId}&userId=${username}`,
+        {
+            method: "GET",
+            withCredentials: true,
+        }
+    ).then((response) => {
+        // return console.log(response);
     });
 }
 
@@ -53,7 +57,7 @@ export async function rateArtist(artistId, rate) {
         data: { artistId, rate },
         withCredentials: true,
     }).then((response) => {
-        console.log(response);
+        // console.log(response);
     });
 }
 
@@ -62,6 +66,6 @@ export async function getArtistRate(artistId) {
         method: "GET",
         withCredentials: true,
     }).then((response) => {
-        return console.log(response);
+        // return console.log(response);
     });
 }

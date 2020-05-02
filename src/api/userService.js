@@ -7,7 +7,6 @@ export async function getMyRecentlyPlayedTracks() {
         method: "GET",
         withCredentials: true,
     }).then((response) => {
-        console.log(response.data);
         return response.data;
     });
 }
@@ -17,7 +16,6 @@ export async function getMySavedTracks() {
         method: "GET",
         withCredentials: true,
     }).then((response) => {
-        console.log(response.data);
         return response.data;
     });
 }
@@ -27,7 +25,6 @@ export async function getMyData() {
         method: "GET",
         withCredentials: true,
     }).then((response) => {
-        console.log(response.data);
         return response.data;
     });
 }

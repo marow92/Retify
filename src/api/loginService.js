@@ -19,13 +19,12 @@ export async function register(username, password) {
     })
         .then((response) => {
             if (response.status !== 201) {
-                console.log(response.data);
                 showNotification(response.data, NotificationType.ERROR);
                 return;
             }
             store.dispatch("authenticationStore/login", username);
-            router.push("dashboard").catch((err) => {
-                console.log(err);
+            router.push("dashboard").catch(() => {
+                // console.log(err);
             });
             showNotification(
                 "You successfully signed up",
@@ -54,8 +53,8 @@ export async function login(username, password) {
                 return;
             }
             store.dispatch("authenticationStore/login", username);
-            router.push("dashboard").catch((err) => {
-                console.log(err);
+            router.push("dashboard").catch(() => {
+                // console.log(err);
             });
             showNotification(
                 "You successfully logged in",
@@ -81,8 +80,8 @@ export async function logout() {
         withCredentials: true,
     }).then(() => {
         store.dispatch("authenticationStore/logout");
-        router.push("login").catch((err) => {
-            console.log(err);
+        router.push("login").catch(() => {
+            // console.log(err);
         });
         showNotification(
             "You successfully logged out",

@@ -13,7 +13,7 @@ export default {
     },
     methods: {
         onRegister() {
-            console.log(this.form);
+            // console.log(this.form);
             register(this.form.email, this.form.password);
         },
     },

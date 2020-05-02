@@ -46,6 +46,7 @@ const routes = [
     },
     {
         path: "/browse-songs",
+        name: "BrowseSongs",
         component: BrowseSongs,
         beforeEnter: isAuthenticated,
     },

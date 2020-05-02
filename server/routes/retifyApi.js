@@ -54,7 +54,7 @@ router.get("/logout", function(req, res) {
 
 router.put("/rate/song", function(req, res) {
     console.log("inside rate song function");
-    console.log(req.body);
+    console.log(req.user);
 
     mongo.rateSong(
         req.body["songId"],
