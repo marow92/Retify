@@ -48,6 +48,9 @@ export default {
             expandOnHover: false,
             background: true,
             username: null,
+            printables: {
+                LOGIN_WITH_SPOTIFY: "Zaloguj do Spotify"
+            }
         };
     },
     computed: {

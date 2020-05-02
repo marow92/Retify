@@ -1,19 +1,18 @@
-import { MoreButton } from "../../../../components";
-import FriendItem from "../friendItem/FriendItem.vue";
+import { MoreButton } from '../../../../components';
+import FriendItem from '../friendItem/FriendItem.vue';
 export default {
-    components: {
-        FriendItem,
-        MoreButton,
-    },
-    props: {
-        friends: Array,
-        onMoreFriends: Function,
-    },
-    data: function() {
-        return {
-            titles: {
-                more: "Zobacz więcej",
-            },
-        };
-    },
+  components: {
+    FriendItem,
+    MoreButton,
+  },
+  props: {
+    friends: Array,
+  },
+  data: function() {
+    return {
+      titles: {
+        more: 'Zobacz więcej',
+      },
+    };
+  },
 };

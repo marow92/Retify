@@ -16,4 +16,9 @@ export default {
     TopArtistItem,
     MoreButton,
   },
+  methods: {
+    onArtistClick() {
+      //todo implement
+    },
+  },
 };

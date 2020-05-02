@@ -16,7 +16,7 @@
   transform: translate(-50%, -50%);
   width: 75%;
   height: 80%;
-  opacity: 0.9;
+  opacity: 0.75;
   border-radius: 20px;
   background-color: white;
   justify-content: center;
@@ -27,8 +27,9 @@
 
 .header {
   display: flex;
-  font-size: 40px;
+  font-size: 55px;
   padding: 15px;
+  font-family: 'Poppins';
 }
 
 .date {

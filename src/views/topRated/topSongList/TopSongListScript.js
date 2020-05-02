@@ -16,4 +16,7 @@ export default {
     TopSongItem,
     MoreButton,
   },
+  methods: {
+    onMoreClick() {},
+  },
 };

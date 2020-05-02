@@ -14,11 +14,21 @@
 }
 
 .picker {
-  margin: 15px;
-  flex-direction: row;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 25px;
+  padding: 25px;
+  flex-direction: row;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .text {
-  margin: 15px;
+  display: flex;
+  padding: 20px;
+  height: fit-content;
+  font-size: 30px;
+  margin: 25px;
 }
