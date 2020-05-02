@@ -2,7 +2,7 @@ import store from "../store";
 import router from "../router";
 import axios from "axios";
 const serverUrl = "http://localhost:8000";
-import { NotificationType } from "../enums/NotificationTypeEnum";
+import { NotificationType } from "../enums";
 import {
     showNotification,
     showLoadingOverlay,
@@ -23,12 +23,12 @@ export async function register(username, password) {
                 showNotification(response.data, NotificationType.ERROR);
                 return;
             }
-            store.dispatch("authenticationStore/login");
+            store.dispatch("authenticationStore/login", username);
             router.push("dashboard").catch((err) => {
                 console.log(err);
             });
             showNotification(
-                "You succesfully signed up",
+                "You successfully signed up",
                 NotificationType.SUCCESS
             );
         })
@@ -58,7 +58,7 @@ export async function login(username, password) {
                 console.log(err);
             });
             showNotification(
-                "You succesfully logged in",
+                "You successfully logged in",
                 NotificationType.SUCCESS
             );
         })
@@ -85,7 +85,7 @@ export async function logout() {
             console.log(err);
         });
         showNotification(
-            "You succesfully logged out",
+            "You successfully logged out",
             NotificationType.SUCCESS
         );
     });

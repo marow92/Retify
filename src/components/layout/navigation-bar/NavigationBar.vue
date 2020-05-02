@@ -15,12 +15,6 @@
         <button @click="loginWithSpotify">
             LOGIN WITH SPOTIFY
         </button>
-        <button @click="getMyRecentlyPlayedTracks">
-            getMyRecentlyPlayedTracks
-        </button>
-        <button @click="getMyData">
-            getMyData
-        </button>
         <v-list dense nav class="py-0">
             <v-list-item two-line :class="miniVariant && 'px-0'">
                 <v-list-item-avatar>
@@ -29,7 +23,7 @@
 
                 <v-list-item-content>
                     <v-list-item-title>Zalogowano</v-list-item-title>
-                    <v-list-item-subtitle>Username</v-list-item-subtitle>
+                    <v-list-item-subtitle>{{ username }}</v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
 

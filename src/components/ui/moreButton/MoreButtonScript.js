@@ -1,6 +1,6 @@
 export default {
-  props: {
-    title: String,
-    onClick: Function,
-  },
+    props: {
+        title: String,
+        onClick: Function,
+    },
 };

@@ -1,10 +1,10 @@
-import { register, login, loginWithSpotify } from "../../api/loginService";
+import { login, loginWithSpotify } from "../../api/loginService";
 
 export default {
     data() {
         return {
             rememberMe: false,
-            primaryColor: '#5e81f7',
+            primaryColor: "#5e81f7",
             form: {
                 username: "",
                 password: "",
@@ -19,7 +19,7 @@ export default {
             loginWithSpotify();
         },
         onRegister() {
-            register(this.form.username, this.form.password);
+            this.$router.push("register");
         },
     },
 };

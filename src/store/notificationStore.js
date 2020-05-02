@@ -1,4 +1,4 @@
-import { NotificationType } from "../enums/NotificationTypeEnum";
+import { NotificationType } from "../enums";
 
 const initialState = () => ({
     message: "",

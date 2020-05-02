@@ -1,4 +1,4 @@
-import { rateSong, getArtistData } from "../../../../api";
+import { rateSong } from "../../../../api";
 export default {
     props: {
         song: Object,
@@ -14,9 +14,17 @@ export default {
     },
     methods: {
         async onRate(rate) {
-            console.log(await getArtistData("06HL4z0CvFAxyc27GXpf02"));
+            console.log(this.song);
             rateSong(this.song.id, rate);
-            // console.log(song);
+        },
+
+        async onAuthorClick() {
+            window.open(
+                `https://open.spotify.com/artist/${this.song.authorId}`
+            );
+        },
+        async onTitleClick() {
+            window.open(`https://open.spotify.com/track/${this.song.id}`);
         },
     },
 };

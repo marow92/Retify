@@ -4,8 +4,8 @@
             <v-icon>$vuetify.icons.song</v-icon>
         </v-list-item-avatar>
         <v-list-item-content class="text-left">
-            <v-list-item-title v-html="song.title" />
-            <v-list-item-subtitle v-html="song.author" />
+            <v-list-item-title v-html="song.title" @click="onTitleClick" />
+            <v-list-item-subtitle v-html="song.author" @click="onAuthorClick" />
         </v-list-item-content>
         <div>
             <v-rating

@@ -1,5 +1,5 @@
 import { loginWithSpotify } from "../../../api/loginService";
-import { getMyRecentlyPlayedTracks, getMyData } from "../../../api/userService";
+import { getCurrentUsername } from "../../../common/utils/utils";
 export default {
     data() {
         return {
@@ -47,24 +47,22 @@ export default {
             miniVariant: true,
             expandOnHover: false,
             background: true,
+            username: null,
         };
     },
     computed: {
         bg() {
             return this.background
                 ? "https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
-                : undefined;
+                : "";
         },
+    },
+    beforeMount() {
+        this.username = getCurrentUsername();
     },
     methods: {
         loginWithSpotify() {
             loginWithSpotify();
-        },
-        getMyRecentlyPlayedTracks() {
-            getMyRecentlyPlayedTracks("5U4W9E5WsYb2jUQWePT8Xm");
-        },
-        getMyData() {
-            getMyData();
         },
     },
 };

@@ -1,7 +1,7 @@
 import { getMyRecentlyPlayedTracks } from "../../api";
 
 export async function getSongsToRate() {
-    const recentlyPlayedSongs = await getMyRecentlyPlayedTracks();
+    const recentlyPlayedSongs = (await getMyRecentlyPlayedTracks()).items;
     return recentlyPlayedSongs;
     // TODO: filter out already rated songs
     // return Promise.all(

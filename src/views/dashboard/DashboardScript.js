@@ -1,7 +1,7 @@
 import FriendList from "./components/friendList/FriendList.vue";
 import RateSongList from "./components/rateSongList/RateSongList.vue";
 import { Card, MoreButton } from "../../components";
-import friends, { songs } from "./mockData";
+import friends from "./mockData";
 import { getSongsToRate } from "./DashboardController";
 export default {
     components: {
@@ -18,7 +18,7 @@ export default {
                 more: "Zobacz więcej",
             },
             friends,
-            songs: songs,
+            songs: [],
             avatar: true,
             flat: true,
             twoLine: true,
@@ -34,11 +34,15 @@ export default {
     },
     async created() {
         const songs = await getSongsToRate();
-        console.log(songs);
+        this.songs = songs.map((obj) => ({
+            id: obj.track.id,
+            title: obj.track.name,
+            author: obj.track.artists[0].name,
+            authorId: obj.track.artists[0].id,
+            rate: 0,
+        }));
     },
-    mounted() {
-        console.log("mounted");
-    },
+    mounted() {},
     methods: {
         onMoreFriends: () => {},
         onMoreSongs: () => {},

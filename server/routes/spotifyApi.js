@@ -123,6 +123,9 @@ router.get("/artists/:id", (req, res) => {
 });
 
 function setTokens(user) {
+    if (!user) {
+        return;
+    }
     spotifyApi.setAccessToken(user.accessToken);
     spotifyApi.setRefreshToken(user.refreshToken);
 }
