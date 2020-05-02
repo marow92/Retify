@@ -4,17 +4,17 @@ var router = express.Router();
 var passport = require("passport");
 const mongo = require("../config/mongoClient").client;
 
-router.post("/register", function (req, res) {
+router.post("/register", function(req, res) {
     console.log("inside register");
     console.log(req.body);
-    mongo.findUserByUserName(req.body["username"], function (err, user) {
+    mongo.findUserByUserName(req.body["username"], function(err, user) {
         if (user) {
             res.status(409).send("User with given username already exists");
         } else {
             mongo.registerUser(
                 req.body["username"],
                 req.body["password"],
-                function (err, inserted) {
+                function(err, inserted) {
                     if (!err) {
                         res.status(201).send(true);
                     } else {
@@ -26,7 +26,7 @@ router.post("/register", function (req, res) {
     });
 });
 
-router.post("/login", function (req, res, next) {
+router.post("/login", function(req, res, next) {
     console.log("inside login");
 
     passport.authenticate("local", (err, user, info) => {
@@ -47,12 +47,12 @@ router.post("/login", function (req, res, next) {
     })(req, res, next);
 });
 
-router.get("/logout", function (req, res) {
+router.get("/logout", function(req, res) {
     req.logout();
     res.send("LOGGED OUT - sessionId is no longer valid");
 });
 
-router.put("/rate/song", function (req, res) {
+router.put("/rate/song", function(req, res) {
     console.log("inside rate song function");
     console.log(req.user);
 
@@ -60,7 +60,7 @@ router.put("/rate/song", function (req, res) {
         req.body["songId"],
         req.user["username"],
         req.body["rate"],
-        function (err, inserted) {
+        function(err, inserted) {
             if (!err) {
                 res.status(200).send();
             } else {
@@ -70,14 +70,12 @@ router.put("/rate/song", function (req, res) {
     );
 });
 
-router.put("/rate/artist", function (req, res) {
-    console.log("inside rate song function");
-
+router.put("/rate/artist", function(req, res) {
     mongo.rateArtist(
         req.body["artistId"],
         req.user["username"],
         req.body["rate"],
-        function (err, inserted) {
+        function(err, inserted) {
             if (!err) {
                 res.status(200).send();
             } else {
@@ -87,10 +85,10 @@ router.put("/rate/artist", function (req, res) {
     );
 });
 
-router.get("/rate/song", function (req, res) {
+router.get("/rate/songs/:id", function(req, res) {
     console.log("get average song rate function");
 
-    mongo.getAverageSongRate(req.query.songId, function (err, extracted) {
+    mongo.getAverageSongRate(req.params.id, function(err, extracted) {
         if (!err) {
             res.status(200).send(extracted);
         } else {
@@ -99,13 +97,27 @@ router.get("/rate/song", function (req, res) {
     });
 });
 
-router.get("/myrate/song", function (req, res) {
-    console.log(`get song rate for user ${req.user["username"]} and song ${req.query.songId}`)
+router.get("/rate/artists/:id", function(req, res) {
+    console.log("get average artist rate function");
 
-    mongo.getSongRateForSpecificUser(
-        req.query.songId,
+    mongo.getAverageArtistRate(req.params.id, function(err, extracted) {
+        if (!err) {
+            res.status(200).send(extracted);
+        } else {
+            res.status(500).send(err);
+        }
+    });
+});
+
+router.get("/my-rates/artists/:id", function(req, res) {
+    console.log(
+        `get song rate for user ${req.user["username"]} and artist ${req.query.artistId}`
+    );
+
+    mongo.getArtistRateForSpecificUser(
+        req.params.id,
         req.user["username"],
-        function (err, extracted) {
+        function(err, extracted) {
             if (!err) {
                 res.status(200).send(extracted);
             } else {
@@ -113,12 +125,41 @@ router.get("/myrate/song", function (req, res) {
             }
         }
     );
-})
+});
 
-router.get("/rate/artist", function (req, res) {
-    console.log("get average artist rate function");
+router.get("/my-rates/songs", function(req, res) {
+    mongo.getAllSongsRatesForSpecificUser(req.user["username"], function(
+        err,
+        extracted
+    ) {
+        if (!err) {
+            res.status(200).send(extracted);
+        } else {
+            res.status(200).send(err);
+        }
+    });
+});
 
-    mongo.getAverageArtistRate(req.query.artistId, function (
+router.get("/my-rates/songs/:id", function(req, res) {
+    console.log(
+        `get song rate for user ${req.user["username"]} and song ${req.params.id}`
+    );
+
+    mongo.getSongRateForSpecificUser(
+        req.params.id,
+        req.user["username"],
+        function(err, extracted) {
+            if (!err) {
+                res.status(200).send(extracted);
+            } else {
+                res.status(500).send(err);
+            }
+        }
+    );
+});
+
+router.get("/my-rates/artists", function(req, res) {
+    mongo.getAllArtistsRatesForSpecificUser(req.user["username"], function(
         err,
         extracted
     ) {
@@ -130,87 +171,33 @@ router.get("/rate/artist", function (req, res) {
     });
 });
 
-router.get("/myrate/artist", function (req, res) {
-    console.log(`get song rate for user ${req.user["username"]} and artist ${req.query.artistId}`)
+router.get("/top/songs", function(req, res) {
+    mongo.extractAllSongs(function(err, extracted) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            let ids = extracted.map((obj) => obj.songId);
+            let topSongs = new Map();
 
-    mongo.getArtistRateForSpecificUser(
-        req.query.artistId,
-        req.user["username"],
-        function (
-            err,
-            extracted
-        ) {
-            if (!err) {
-                res.status(200).send(extracted);
-            } else {
-                res.status(500).send(err);
-            }
-        });
-});
-
-router.get("/myrates/songs", function (req, res) {
-    mongo.getAllSongsRatesForSpecificUser(
-        req.user["username"],
-        function (
-            err,
-            extracted
-        ) {
-            if (!err) {
-                console.log(extracted)
-                res.status(200).send(extracted);
-            } else {
-                res.status(500).send(err);
-            }
+            ids.forEach((element) => {
+                if (!topSongs.get(element)) {
+                    topSongs.set(element, 1);
+                } else {
+                    topSongs.set(element, topSongs.get(element) + 1);
+                }
+            });
+            const topN = Array.from(topSongs.entries())
+                .sort((a, b) => b[1] - a[1])
+                .map((element) => {
+                    return {
+                        songId: element[0],
+                        count: element[1],
+                    };
+                })
+                .slice(0, 50);
+            res.status(200).send(topN);
         }
-    )
-});
-
-router.get("/myrates/artists", function (req, res) {
-    mongo.getAllArtistsRatesForSpecificUser(
-        req.user["username"],
-        function (
-            err,
-            extracted
-        ) {
-            if (!err) {
-                res.status(200).send(extracted);
-            } else {
-                res.status(500).send(err);
-            }
-        }
-    )
-});
-
-router.get("/top/songs", function (req, res) {
-    mongo.extractAllSongs(
-        function (
-            err,
-            extracted
-        ) {
-            if (err) {
-                res.status(500).send(err);
-            } else {
-                let ids = extracted.map(obj => obj.songId)
-                let topSongs = new Map()
-
-                ids.forEach(element => {
-                    if (!topSongs.get(element)) {
-                        topSongs.set(element, 1)
-                    }
-                    else {
-                        topSongs.set(element, topSongs.get(element) + 1)
-                    }
-                });
-                const topN = Array.from(topSongs.entries()).sort((a, b) => b[1] - a[1])
-                    .map(element => {
-                        return {
-                            songId: element[0],
-                            count: element[1]
-                        }
-                    }).slice(0, 50);
-                res.status(200).send(topN)
-            }
-        })
+    });
 });
 
 module.exports = router;

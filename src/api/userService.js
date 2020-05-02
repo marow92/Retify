@@ -28,3 +28,23 @@ export async function getMyData() {
         return response.data;
     });
 }
+
+export async function getMySongRate(songId) {
+    return axios(`${serverUrl}/api/retify/my-rates/songs/${songId}`, {
+        method: "GET",
+        withCredentials: true,
+    }).then((response) => {
+        console.log(response);
+        return response.data;
+    });
+}
+
+export async function getMyRates() {
+    return axios(`${serverUrl}/api/retify/my-rates/songs`, {
+        method: "GET",
+        withCredentials: true,
+    }).then((response) => {
+        console.log(response);
+        return response.data;
+    });
+}
