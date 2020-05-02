@@ -39,10 +39,11 @@
 }
 
 .content {
-  padding-top: 10%;
   display: flex;
-  width: 75%;
   flex: 1;
+  padding-top: 200px;
+  height: 100%;
+  width: 75%;
   overflow-y: scroll;
   align-self: center;
   flex-direction: column;
