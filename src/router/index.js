@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 import Dashboard from '../views/dashboard/Dashboard.vue';
 import TopRated from '../views/topRated/TopRated.vue';
 import Login from '../views/login/Login.vue';
+import BrowseSongs from '../views/browseSongs/BrowseSongs.vue';
+import Settings from '../views/settings/Settings.vue';
 import Register from '../views/register/Register.vue'
 import { logout } from '../api/loginService';
 import store from '../store';
@@ -51,10 +53,18 @@ const routes = [
     },
   },
   {
+    path: '/browseSongs',
+    component: BrowseSongs,
+  },
+  {
     path: '/play',
     beforeEnter: () => {
       window.location.href = 'https://open.spotify.com/';
     },
+  },
+  {
+    path: '/settings',
+    component: Settings,
   },
   {
     path: '/',
