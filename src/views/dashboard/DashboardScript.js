@@ -34,6 +34,7 @@ export default {
     },
     async created() {
         const songs = await getSongsToRate();
+        console.log(songs);
         this.songs = songs.map((obj) => ({
             id: obj.track.id,
             title: obj.track.name,

@@ -92,7 +92,7 @@ router.get("/rate/songs/:id", function(req, res) {
         if (!err) {
             res.status(200).send(extracted);
         } else {
-            res.status(500).send();
+            res.status(200).send();
         }
     });
 });
@@ -104,7 +104,7 @@ router.get("/rate/artists/:id", function(req, res) {
         if (!err) {
             res.status(200).send(extracted);
         } else {
-            res.status(500).send(err);
+            res.status(200).send(err);
         }
     });
 });
@@ -121,7 +121,7 @@ router.get("/my-rates/artists/:id", function(req, res) {
             if (!err) {
                 res.status(200).send(extracted);
             } else {
-                res.status(500).send(err);
+                res.status(200).send(err);
             }
         }
     );
@@ -152,7 +152,7 @@ router.get("/my-rates/songs/:id", function(req, res) {
             if (!err) {
                 res.status(200).send(extracted);
             } else {
-                res.status(500).send(err);
+                res.status(200).send(err);
             }
         }
     );
@@ -166,7 +166,7 @@ router.get("/my-rates/artists", function(req, res) {
         if (!err) {
             res.status(200).send(extracted);
         } else {
-            res.status(500).send(err);
+            res.status(200).send(err);
         }
     });
 });
