@@ -11,6 +11,8 @@ const indexRouter = require("./routes/index");
 
 const app = express();
 
+const PORT = process.env.PORT || 8000
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors({ credentials: true, origin: "http://localhost:8080" }));
@@ -29,6 +31,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/", indexRouter);
-app.listen(8000, () => {
-    console.log("Listening on localhost:8000");
+app.listen(PORT, () => {
+    console.log(`Listening on localhost: ${PORT}`);
 });
