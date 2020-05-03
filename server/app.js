@@ -5,10 +5,10 @@ const FileStore = require("session-file-store")(session);
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const cors = require("cors");
-// const bcrypt = require('bcrypt-nodejs');
 require("./config/passport");
 const retifyRouter = require("./routes/retifyApi");
 const spotifyRouter = require("./routes/spotifyApi");
+const PORT = process.env.PORT || 8000;
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,6 +30,6 @@ app.use(passport.session());
 
 app.use("/api/retify/", retifyRouter);
 app.use("/api/spotify/", spotifyRouter);
-app.listen(8000, () => {
-    console.log("Listening on localhost:8000");
+app.listen(PORT, () => {
+    console.log(`Listening on localhost: ${PORT}`);
 });
