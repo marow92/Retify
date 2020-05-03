@@ -13,7 +13,10 @@ const PORT = process.env.PORT || 8000;
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors({ credentials: true, origin: "*" }));
+app.use(cors({ credentials: true, origin: "https://hunterheads.github.io",
+    //"https://hunterheads.github.io/Retify/#/callback",
+    //"https://hunterheads.github.io/Retify/#/home"
+}));
 app.use(
     session({
         genid: () => {
