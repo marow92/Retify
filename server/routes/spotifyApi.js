@@ -16,18 +16,20 @@ router.get(
             "user-read-recently-played",
             "playlist-read-private",
         ],
-        failureRedirect: "http://localhost:8080/#/login",
+        failureRedirect: "https://retify-deploy.herokuapp.com/api/spotify/login",
     })
 );
 
 router.get(
     "/callback",
     passport.authenticate("spotify", {
-        failureRedirect: "http://localhost:8080/#/login",
+        //failureRedirect: "http://localhost:8080/#/login",
+        failureRedirect: "https://hunterheads.github.io/Retify/#/login",
     }),
     (req, res) => {
         console.log("LOGGED");
-        res.redirect("http://localhost:8080/Retify/#/callback");
+        //res.redirect("http://localhost:8080/Retify/#/callback");
+        res.redirect("https://hunterheads.github.io/Retify/#/callback");
     }
 );
 

@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8000;
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors({ credentials: true, origin: "http://localhost:8080" }));
+app.use(cors({ credentials: true, origin: "https://hunterheads.github.io/Retify/#/register" }));
 app.use(
     session({
         genid: () => {

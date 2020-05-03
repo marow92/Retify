@@ -28,7 +28,8 @@ router.get(
     "/login-with-spotify",
     passport.authenticate("spotify", {
         scope: ["user-read-email", "user-read-private"],
-        failureRedirect: "http://localhost:8080/login",
+        //failureRedirect: "http://localhost:8080/login",
+        failureRedirect: "https://hunterheads.github.io/Retify/#/login",
         // showDialog: true
     })
 );
@@ -36,10 +37,12 @@ router.get(
 router.get(
     "/callback",
     passport.authenticate("spotify", {
-        failureRedirect: "http://localhost:8080/login",
+        //failureRedirect: "http://localhost:8080/login",
+        failureRedirect: "https://hunterheads.github.io/Retify/#/login",
     }),
     function(req, res) {
-        res.redirect("http://localhost:8080/home");
+        //res.redirect("http://localhost:8080/home");
+        res.redirect("https://hunterheads.github.io/Retify/#/home");
     }
 );
 
