@@ -27,7 +27,6 @@ const client = {
             if (err) {
                 return res.status(500).send("Error getting user");
             } else {
-                console.log(records);
                 // return res.status(200).send(records);
             }
         });
@@ -35,10 +34,6 @@ const client = {
 
     checkCredentialsCorrectness: async function(username, password, callback) {
         const collection = await client.getCollection("UserCredentials");
-        console.log(await client.getAll());
-        console.log(
-            `searching data for username: ${username} and password: ${password}`
-        );
 
         collection.findOne(
             {
@@ -51,7 +46,6 @@ const client = {
 
     findUserByUserName: async function(username, callback) {
         const collection = await client.getCollection("UserCredentials");
-        console.log(`checking does user exist: ${username}`);
 
         collection.findOne(
             {
@@ -63,9 +57,6 @@ const client = {
 
     registerUser: async function(username, password, callback) {
         const collection = await client.getCollection("UserCredentials");
-        console.log(
-            `searching data for username: ${username} and password: ${password}`
-        );
 
         collection.insertOne(
             {
@@ -78,8 +69,6 @@ const client = {
 
     rateSong: async function(songId, userName, rate, callback) {
         const collection = await client.getCollection("SongsRates");
-
-        console.log(`attempt of rating song: ${songId} by user: ${userName}`);
 
         collection.updateOne(
             {
@@ -103,8 +92,6 @@ const client = {
     getAverageSongRate: async function(songId, callback) {
         const collection = await client.getCollection("SongsRates");
 
-        console.log(`getting average rate for song: ${songId}`);
-
         collection
             .aggregate([
                 {
@@ -123,7 +110,6 @@ const client = {
     getSongRateForSpecificUser: async function(songId, userName, callback) {
         const collection = await client.getCollection("SongsRates");
 
-        console.log(`getting rate for song: ${songId} and user: ${userName}`);
         collection
             .aggregate([
                 {
@@ -163,7 +149,6 @@ const client = {
     getArtistRateForSpecificUser: async function(artistId, userName, callback) {
         const collection = await client.getCollection("ArtistsRates");
 
-        console.log(`getting rate for song: ${artistId} and user: ${userName}`);
         collection
             .aggregate([
                 {
@@ -187,10 +172,6 @@ const client = {
     rateArtist: async function(artistId, userName, rate, callback) {
         const collection = await client.getCollection("ArtistsRates");
 
-        console.log(
-            `attempt of rating artist: ${artistId} by user: ${userName}`
-        );
-
         collection.updateOne(
             {
                 userName: userName,
@@ -210,8 +191,6 @@ const client = {
 
     getAverageArtistRate: async function(artistId, callback) {
         const collection = await client.getCollection("ArtistsRates");
-
-        console.log(`getting average rate for artist: ${artistId}`);
 
         collection
             .aggregate([

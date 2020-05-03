@@ -1,5 +1,6 @@
 const initialState = () => ({
     isLoading: false,
+    backgroundColor: "#058293",
 });
 
 export default {
@@ -9,6 +10,9 @@ export default {
         setIsLoading(state, payload) {
             state.isLoading = payload.isLoading;
         },
+        setBackgroundColor(state, payload) {
+            state.backgroundColor = payload.backgroundColor;
+        },
     },
     actions: {
         showLoading({ commit }) {
@@ -16,6 +20,9 @@ export default {
         },
         hideLoading({ commit }) {
             commit("setIsLoading", { isLoading: false });
+        },
+        setBackgroundColor({ commit }, backgroundColor) {
+            commit("setBackgroundColor", { backgroundColor });
         },
     },
 };

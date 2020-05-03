@@ -22,10 +22,8 @@ export async function register(username, password) {
                 showNotification(response.data, NotificationType.ERROR);
                 return;
             }
-            store.dispatch("authenticationStore/login", username);
-            router.push("dashboard").catch(() => {
-                // console.log(err);
-            });
+            store.dispatch("authenticationStore/login", { username });
+            router.push("dashboard").catch(() => {});
             showNotification(
                 "You successfully signed up",
                 NotificationType.SUCCESS
@@ -52,10 +50,8 @@ export async function login(username, password) {
                 showNotification(response.data, NotificationType.ERROR);
                 return;
             }
-            store.dispatch("authenticationStore/login", username);
-            router.push("dashboard").catch(() => {
-                // console.log(err);
-            });
+            store.dispatch("authenticationStore/login", { username });
+            router.push("dashboard").catch(() => {});
             showNotification(
                 "You successfully logged in",
                 NotificationType.SUCCESS
@@ -80,9 +76,7 @@ export async function logout() {
         withCredentials: true,
     }).then(() => {
         store.dispatch("authenticationStore/logout");
-        router.push("login").catch(() => {
-            // console.log(err);
-        });
+        router.push("login").catch(() => {});
         showNotification(
             "You successfully logged out",
             NotificationType.SUCCESS

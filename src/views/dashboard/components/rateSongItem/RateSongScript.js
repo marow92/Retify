@@ -14,7 +14,6 @@ export default {
     },
     methods: {
         async onRate(rate) {
-            // console.log(this.song);
             rateSong(this.song.id, rate);
         },
 

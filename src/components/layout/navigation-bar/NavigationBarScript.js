@@ -1,46 +1,10 @@
-import { loginWithSpotify } from "../../../api/loginService";
 import { getCurrentUsername } from "../../../common/utils/utils";
+import { mapState } from "vuex";
 export default {
     data() {
         return {
             drawer: true,
-            items: [
-                {
-                    title: "Strona główna",
-                    icon: "$vuetify.icons.dash",
-                    to: "/dashboard",
-                },
-                {
-                    title: "Najlepsze",
-                    icon: "$vuetify.icons.star",
-                    to: "/top-rated",
-                },
-                // {
-                //     title: "Artyści",
-                //     icon: "$vuetify.icons.artist",
-                //     to: "/artists",
-                // },
-                {
-                    title: "Piosenki",
-                    icon: "$vuetify.icons.music",
-                    to: "/browse-songs",
-                },
-                {
-                    title: "Słuchaj",
-                    icon: "$vuetify.icons.play",
-                    to: "/play",
-                },
-                {
-                    title: "Ustawienia",
-                    icon: "$vuetify.icons.prefs",
-                    to: "/settings",
-                },
-                {
-                    title: "Wyloguj się",
-                    icon: "$vuetify.icons.logout",
-                    to: "/logout",
-                },
-            ],
+            items: [],
             color: "primary",
             colors: ["primary", "blue", "success", "red", "teal"],
             right: false,
@@ -54,6 +18,7 @@ export default {
         };
     },
     computed: {
+        ...mapState("authenticationStore", ["isSpotify"]),
         bg() {
             return this.background
                 ? "https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
@@ -61,11 +26,49 @@ export default {
         },
     },
     beforeMount() {
+        this.items = [
+            {
+                title: "Strona główna",
+                icon: "$vuetify.icons.dash",
+                to: "/dashboard",
+            },
+            {
+                title: "Najlepsze",
+                icon: "$vuetify.icons.star",
+                to: "/top-rated",
+            },
+            // {
+            //     title: "Artyści",
+            //     icon: "$vuetify.icons.artist",
+            //     to: "/artists",
+            // },
+            {
+                title: "Ocenione",
+                icon: "$vuetify.icons.music",
+                to: "/browse-songs",
+            },
+            {
+                title: "Słuchaj",
+                icon: "$vuetify.icons.play",
+                to: "/play",
+            },
+            {
+                title: "Ustawienia",
+                icon: "$vuetify.icons.prefs",
+                to: "/settings",
+            },
+            {
+                title: "Zaloguj ze Spotify",
+                icon: "$vuetify.icons.login",
+                to: "/login-with-spotify",
+                isHidden: this.isSpotify,
+            },
+            {
+                title: "Wyloguj się",
+                icon: "$vuetify.icons.logout",
+                to: "/logout",
+            },
+        ];
         this.username = getCurrentUsername();
-    },
-    methods: {
-        loginWithSpotify() {
-            loginWithSpotify();
-        },
     },
 };

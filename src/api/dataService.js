@@ -8,7 +8,6 @@ export async function getAlbumSongs(id) {
         withCredentials: true,
     }).then((response) => {
         return response.data;
-        // console.log(response.data);
     });
 }
 
@@ -18,7 +17,6 @@ export async function getArtistData(id) {
         withCredentials: true,
     }).then((response) => {
         return response.data;
-        // console.log(response.data);
     });
 }
 
@@ -28,7 +26,6 @@ export async function getSongData(id) {
         withCredentials: true,
     }).then((response) => {
         return response.data;
-        // console.log(response.data);
     });
 }
 
@@ -39,7 +36,7 @@ export async function rateSong(songId, rate) {
         withCredentials: true,
     }).then((response) => {
         return response.data;
-        // console.log(response);
+        // log(response);
     });
 }
 
@@ -49,7 +46,6 @@ export async function getSongRate(songId) {
         withCredentials: true,
     }).then((response) => {
         return response.data;
-        // return console.log(response);
     });
 }
 
@@ -60,7 +56,6 @@ export async function rateArtist(artistId, rate) {
         withCredentials: true,
     }).then((response) => {
         return response.data;
-        // console.log(response);
     });
 }
 
@@ -70,6 +65,14 @@ export async function getArtistRate(artistId) {
         withCredentials: true,
     }).then((response) => {
         return response.data;
-        // return console.log(response);
+    });
+}
+
+export async function getTopRatedSongs() {
+    return axios(`${serverUrl}/api/retify/top/songs`, {
+        method: "GET",
+        withCredentials: true,
+    }).then((response) => {
+        return response.data;
     });
 }

@@ -26,6 +26,7 @@ router.get(
         failureRedirect: "http://localhost:8080/#/login",
     }),
     (req, res) => {
+        console.log("LOGGED");
         res.redirect("http://localhost:8080/#/callback");
     }
 );
@@ -43,7 +44,6 @@ router.get("/me", (req, res) => {
 });
 
 router.get("/me/recently-played", (req, res) => {
-    // console.log(req.user);
     setTokens(req.user);
     if (req.isAuthenticated()) {
         spotifyApi
@@ -56,7 +56,6 @@ router.get("/me/recently-played", (req, res) => {
 });
 
 router.get("/me/songs", (req, res) => {
-    // console.log(req.user);
     setTokens(req.user);
     if (req.isAuthenticated()) {
         spotifyApi
@@ -69,7 +68,6 @@ router.get("/me/songs", (req, res) => {
 });
 
 router.get("/artists/:id/albums", (req, res) => {
-    console.log(req.params.id);
     if (req.isAuthenticated()) {
         setTokens(req.user);
         spotifyApi
@@ -82,7 +80,6 @@ router.get("/artists/:id/albums", (req, res) => {
 });
 
 router.get("/albums/:id/songs", (req, res) => {
-    console.log(req.params.id);
     if (req.isAuthenticated()) {
         setTokens(req.user);
         spotifyApi
@@ -97,7 +94,6 @@ router.get("/albums/:id/songs", (req, res) => {
 });
 
 router.get("/songs/:id", (req, res) => {
-    console.log(req.params.id);
     if (req.isAuthenticated()) {
         setTokens(req.user);
         spotifyApi
@@ -110,7 +106,6 @@ router.get("/songs/:id", (req, res) => {
 });
 
 router.get("/artists/:id", (req, res) => {
-    console.log(req.params.id);
     if (req.isAuthenticated()) {
         setTokens(req.user);
         spotifyApi

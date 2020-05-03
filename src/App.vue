@@ -4,7 +4,7 @@
         <notification-component />
         <navigation-bar v-if="isLogged"/>
 
-        <v-content>
+        <v-content :style="`background-color: ${this.backgroundColor}`">
             <v-container fluid>
                 <div id="app">
                     <div id="nav"></div>

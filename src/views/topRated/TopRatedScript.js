@@ -1,8 +1,7 @@
 import { Card, MoreButton } from "../../components";
-import { topSongs, topArtists } from "./mockData";
 import TopSongList from "./topSongList/TopSongList.vue";
 import TopArtistList from "./topArtistList/TopArtistList.vue";
-import { getMyRatedSongs } from "./TopRatedController";
+import { getTop50Songs } from "./TopRatedController";
 
 export default {
     components: {
@@ -13,16 +12,15 @@ export default {
     },
     data: function() {
         return {
-            topSongs,
-            topArtists,
+            topSongs: [],
             titles: {
                 topSongs: "Top 50 piosenek",
                 topArtists: "Top 50 artystów",
             },
         };
     },
-    async mounted() {
-        this.songs = await getMyRatedSongs();
+    async created() {
+        this.topSongs = await getTop50Songs();
     },
     computed: {},
     methods: {},

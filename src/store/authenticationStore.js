@@ -1,6 +1,7 @@
 const initialState = () => ({
     isLogged: false,
     username: "",
+    isSpotify: false,
 });
 
 export default {
@@ -13,11 +14,15 @@ export default {
         setUsername(state, payload) {
             state.username = payload.username;
         },
+        setIsSpotify(state, payload) {
+            state.isSpotify = payload.isSpotify;
+        },
     },
     actions: {
-        login({ commit }, username) {
+        login({ commit }, { username, isSpotify }) {
             commit("setIsLogged", { isLogged: true });
             commit("setUsername", { username });
+            commit("setIsSpotify", { isSpotify });
         },
         logout({ commit }) {
             commit("setIsLogged", { isLogged: false });

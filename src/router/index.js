@@ -6,7 +6,7 @@ import Login from "../views/login/Login.vue";
 import BrowseSongs from "../views/browseSongs/BrowseSongs.vue";
 import Settings from "../views/settings/Settings.vue";
 import Register from "../views/register/Register.vue";
-import { logout } from "../api/loginService";
+import { logout, loginWithSpotify } from "../api/loginService";
 import store from "../store";
 import { NotificationType } from "../enums";
 
@@ -62,12 +62,17 @@ const routes = [
         beforeEnter: isAuthenticated,
     },
     {
+        path: "/login-with-spotify",
+        beforeEnter: () => {
+            loginWithSpotify();
+        },
+    },
+    {
         path: "/callback",
         beforeEnter: () => {
-            store.dispatch("authenticationStore/login");
-            router.push("dashboard").catch((err) => {
-                console.log(err);
-            });
+            console.log("LOGGED");
+            store.dispatch("authenticationStore/login", { isSpotify: true });
+            router.push("dashboard").catch(() => {});
         },
     },
     {
@@ -82,9 +87,7 @@ function isAuthenticated(to, from, next) {
             message: "You need to log in first",
             type: NotificationType.WARNING,
         });
-        router.push("login").catch((err) => {
-            console.log(err);
-        });
+        router.push("login").catch(() => {});
         return;
     }
     next();

@@ -11,5 +11,6 @@ export default {
     },
     computed: {
         ...mapState("authenticationStore", ["isLogged"]),
+        ...mapState("commonStore", ["backgroundColor"]),
     },
 };

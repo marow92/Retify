@@ -34,7 +34,6 @@ export async function getMySongRate(songId) {
         method: "GET",
         withCredentials: true,
     }).then((response) => {
-        console.log(response);
         return response.data;
     });
 }
@@ -44,7 +43,6 @@ export async function getMyRates() {
         method: "GET",
         withCredentials: true,
     }).then((response) => {
-        console.log(response);
         return response.data;
     });
 }

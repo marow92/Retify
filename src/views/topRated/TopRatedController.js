@@ -1,17 +1,26 @@
-import { getMyRates, getSongData } from "../../api";
+import { getTopRatedSongs, getSongData } from "../../api";
+import {
+    hideLoadingOverlay,
+    showLoadingOverlay,
+} from "../../common/utils/utils";
 
-export async function getMyRatedSongs() {
-    const myRates = await getMyRates();
+export async function getTop50Songs() {
+    showLoadingOverlay();
+    const bestSongs = await getTopRatedSongs();
     const songPromises = [];
-    myRates.forEach((obj) => songPromises.push(getSongData(obj.songId)));
+    bestSongs.forEach((obj) => songPromises.push(getSongData(obj.songId)));
     return await Promise.all(songPromises).then((result) => {
-        return result.map((obj, index) => ({
-            title: obj.name,
-            author: obj.artists[0].name,
-            songId: obj.id,
-            rate: myRates[index].rate,
-        }));
-        // result.map((obj) => obj.track.songId);
+        hideLoadingOverlay();
+        return result
+            .filter((obj) => obj.id)
+            .map((obj, index) => {
+                return {
+                    title: obj.name,
+                    author: obj.artists[0].name,
+                    songId: obj.id,
+                    rate: bestSongs[index].rate,
+                    count: bestSongs[index].count,
+                };
+            });
     });
-    // console.log(await getMyRates());
 }

@@ -4,9 +4,9 @@
             <Card class="card" :cardTitle="titles.topSongs">
                 <TopSongList :songs="topSongs" />
             </Card>
-            <Card class="card" :cardTitle="titles.topArtists">
+            <!-- <Card class="card" :cardTitle="titles.topArtists">
                 <TopArtistList :artists="topArtists" />
-            </Card>
+            </Card> -->
         </v-row>
     </div>
 </template>

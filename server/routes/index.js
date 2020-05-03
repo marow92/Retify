@@ -12,7 +12,6 @@ const client = require("../config/mongoClient").client;
 // var passport = require("passport");
 
 // router.get("/authrequired", (req, res) => {
-//     console.log(req.sessionID);
 //     if (req.isAuthenticated()) {
 //         res.send("you hit the authentication endpoint\n");
 //     } else {
@@ -29,7 +28,7 @@ router.get(
     "/login-with-spotify",
     passport.authenticate("spotify", {
         scope: ["user-read-email", "user-read-private"],
-        failureRedirect: "http://localhost:8080/login"
+        failureRedirect: "http://localhost:8080/login",
         // showDialog: true
     })
 );
@@ -37,17 +36,14 @@ router.get(
 router.get(
     "/callback",
     passport.authenticate("spotify", {
-        failureRedirect: "http://localhost:8080/login"
+        failureRedirect: "http://localhost:8080/login",
     }),
     function(req, res) {
-        // console.log(res.req.user);
-        // console.log(res.req.user.emails[0].value);
         res.redirect("http://localhost:8080/home");
     }
 );
 
 router.get("/authrequired", (req, res) => {
-    console.log(req.sessionID);
     if (req.isAuthenticated()) {
         res.send("you hit the authentication endpoint\n");
     } else {

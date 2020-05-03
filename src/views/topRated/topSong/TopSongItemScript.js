@@ -1,18 +1,18 @@
 export default {
-  props: {
-    topSong: Object,
-  },
-  data() {
-    return {};
-  },
-  computed: {
-    ratesCountPrintable() {
-      return `ilość ocen: ${this.topSong.ratesCount}`;
+    props: {
+        topSong: Object,
     },
-  },
-  methods: {
-    onClick() {
-      //todo implement
-    }
-  }
+    data() {
+        return {};
+    },
+    computed: {
+        ratesCountPrintable() {
+            return `ilość ocen: ${this.topSong.count}`;
+        },
+    },
+    methods: {
+        onClick() {
+            //todo implement
+        },
+    },
 };

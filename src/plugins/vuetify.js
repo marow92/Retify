@@ -15,6 +15,7 @@ export default new Vuetify({
             play: "mdi-play",
             prefs: "mdi-settings",
             logout: "mdi-location-exit",
+            login: "mdi-login",
             more: "mdi-more",
             song: "mdi-music-circle",
             account: "mdi-account-circle",
