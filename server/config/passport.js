@@ -21,7 +21,7 @@ passport.use(
         {
             clientID: cliendId,
             clientSecret: clientSecret,
-            callbackURL: "http://localhost:8000/api/spotify/callback",
+            callbackURL: "https://retify-deploy.herokuapp.com/api/spotify/callback",
         },
         function(accessToken, refreshToken, expires_in, profile, done) {
             // asynchronous verification, for effect...
