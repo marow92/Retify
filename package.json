@@ -20,7 +20,7 @@
         "passport-local": "^1.0.0",
         "passport-spotify": "^1.1.0",
         "session-file-store": "^1.4.0",
-        "vue": "^2.6.11", 
+        "vue": "^2.6.11",
         "vue-cli": "^2.9.6",
         "vue-router": "^3.1.5",
         "vuetify": "^2.2.20",
