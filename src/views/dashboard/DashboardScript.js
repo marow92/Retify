@@ -31,15 +31,14 @@ export default {
         last3Friends: function() {
             return this.friends.slice(0, 3);
         },
-        async created() {
-            this.songs = await getSongsToRate();
-        },
-        mounted() {},
-        methods: {
-            onMoreFriends: () => {},
-            onMoreSongs: () => {},
-            onSongRated: () => {},
-            onFriend: () => {},
-        },
+    },
+    async created() {
+        this.songs = await getSongsToRate();
+    },
+    methods: {
+        onMoreFriends: () => {},
+        onMoreSongs: () => {},
+        onSongRated: () => {},
+        onFriend: () => {},
     },
 };

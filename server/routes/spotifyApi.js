@@ -27,7 +27,7 @@ router.get(
     }),
     (req, res) => {
         console.log("LOGGED");
-        res.redirect("http://localhost:8080/#/callback");
+        res.redirect("http://localhost:8080/Retify/#/callback");
     }
 );
 
