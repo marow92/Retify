@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
-        "build": "vue-cli-service build",
+        "build": "vue-cli-service build && cd server && npm install",
         "start": "concurrently \"npm run server\" \"npm run client\"",
         "lint": "vue-cli-service lint",
         "pretty": "prettier --write \"./**/*.{js,jsx,json}\"",
