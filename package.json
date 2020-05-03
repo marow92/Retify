@@ -9,7 +9,7 @@
         "lint": "vue-cli-service lint",
         "pretty": "prettier --write \"./**/*.{js,jsx,json}\"",
         "client": "vue-cli-service serve --open",
-        "server": "cd server && nodemon --ignore \"sessions/*\" app.js"
+        "server": "cd server && node app.js"
     },
     "dependencies": {
         "axios": "^0.19.2",
